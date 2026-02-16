@@ -27,7 +27,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           <input
             ref={ref}
             className={`
-              block w-full py-2 border rounded-md shadow-sm focus:outline-none focus:ring-1 sm:text-sm transition-colors
+              block font-bold w-full py-2 border rounded-md shadow-sm focus:outline-none focus:ring-1 sm:text-sm transition-colors
               ${icon ? "pl-10" : "pl-3"}
               ${
                 error

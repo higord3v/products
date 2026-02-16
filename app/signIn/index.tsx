@@ -44,7 +44,7 @@ export default function SignIn() {
 
       {/* Retrying with a single centered GREEN card approach which matches "Same color as image" description often used for these solid color login screens */}
       <div className='fixed inset-0 flex items-center justify-center bg-gray-100'>
-        <div className='bg-[#8CC63F] w-full max-w-md p-8 rounded-3xl shadow-2xl relative overflow-hidden'>
+        <div className='bg-[#7ABA28] w-full max-w-md p-8 rounded-3xl shadow-2xl relative overflow-hidden'>
           {/* Decorative circles/effects if needed, keeping it clean for now */}
 
           <div className='text-center mb-10'>
@@ -58,11 +58,11 @@ export default function SignIn() {
               id='email'
               name='email'
               placeholder='Usuário'
-              className='rounded-full py-3'
+              className='rounded-full py-3 bg-white border-white text-gray-900 placeholder-gray-500 focus:ring-white focus:border-white'
               error={state?.errors?.email?.[0]}
               icon={
                 <svg
-                  className='h-5 w-5'
+                  className='h-5 w-5 text-gray-500'
                   fill='none'
                   viewBox='0 0 24 24'
                   stroke='currentColor'
@@ -82,11 +82,11 @@ export default function SignIn() {
               name='password'
               type='password'
               placeholder='Senha'
-              className='rounded-full py-3'
+              className='rounded-full py-3 bg-white border-white text-gray-900 placeholder-gray-500 focus:ring-white focus:border-white'
               error={state?.errors?.password?.[0]}
               icon={
                 <svg
-                  className='h-5 w-5'
+                  className='h-5 w-5 text-gray-500'
                   fill='none'
                   viewBox='0 0 24 24'
                   stroke='currentColor'
@@ -125,7 +125,7 @@ export default function SignIn() {
               <Button
                 type='submit'
                 isLoading={pending}
-                className='w-full rounded-full py-3 bg-white text-[#7ABA28] hover:bg-gray-50'
+                className='w-full cursor-pointer rounded-full py-3 bg-white font-bold hover:bg-gray-100 shadow-md transition-transform transform hover:scale-105'
               >
                 Login
               </Button>
