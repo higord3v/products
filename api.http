@@ -13,3 +13,14 @@ Content-Type: application/json
 GET https://apihomolog.innovationbrindes.com.br/api/innova-dinamica/produtos/listar HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{login.response.body.token_de_acesso}}
+
+###
+
+POST https://apihomolog.innovationbrindes.com.br/api/innova-dinamica/produtos/listar HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.token_de_acesso}}
+
+{
+    "codigo_produto": "3506",
+    "nome_produto": ""
+}

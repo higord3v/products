@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import { Product } from "@/types";
 // Requisities said "Tailwind", "React Query", "Zustand".
 // It didn't specify an Icon library.
@@ -10,6 +12,7 @@ interface ProductCardProps {
   onViewDetails: (product: Product) => void;
   isFavorite: boolean;
   onToggleFavorite: (product: Product) => void;
+  priority?: boolean;
 }
 
 export default function ProductCard({
@@ -17,6 +20,7 @@ export default function ProductCard({
   onViewDetails,
   isFavorite,
   onToggleFavorite,
+  priority = false,
 }: ProductCardProps) {
   // Format price
   const formattedPrice = new Intl.NumberFormat("pt-BR", {
@@ -60,11 +64,16 @@ export default function ProductCard({
         </button>
 
         {/* Image */}
-        <img
-          src={product.imagem}
-          alt={product.nome}
-          className='w-full h-full object-contain p-4'
-        />
+        <div className='relative w-full h-full p-4'>
+          <Image
+            src={product.imagem}
+            alt={product.nome}
+            fill
+            className='object-contain p-4'
+            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+            priority={priority}
+          />
+        </div>
       </div>
 
       <div className='p-4 flex flex-col flex-1'>
