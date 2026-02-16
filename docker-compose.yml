@@ -1,0 +1,10 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - SESSION_SECRET=${SESSION_SECRET:-a_very_secret_key_used_for_session_encryption}
+    restart: always

@@ -1,0 +1,8 @@
+node_modules
+.next
+.git
+.dockerignore
+Dockerfile
+npm-debug.log
+README.md
+.env*.local
