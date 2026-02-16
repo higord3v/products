@@ -17,7 +17,6 @@ export default function Modal({
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Close on Escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -34,7 +33,6 @@ export default function Modal({
     };
   }, [isOpen, onClose]);
 
-  // Focus trap (simplified)
   useEffect(() => {
     if (isOpen && modalRef.current) {
       modalRef.current.focus();
@@ -46,7 +44,7 @@ export default function Modal({
   return (
     <div className='fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm'>
       <div
-        ref={modalRef} // Wait, div is not focusable by default unless tabindex is set
+        ref={modalRef}
         tabIndex={-1}
         className='bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto flex flex-col relative'
         role='dialog'

@@ -15,19 +15,15 @@ describe("useDebounce", () => {
       { initialProps: { value: "initial", delay: 500 } },
     );
 
-    // Update value
     rerender({ value: "updated", delay: 500 });
 
-    // Should still be initial immediately
     expect(result.current).toBe("initial");
 
-    // Fast forward time less than delay
     act(() => {
       vi.advanceTimersByTime(200);
     });
     expect(result.current).toBe("initial");
 
-    // Fast forward past delay
     act(() => {
       vi.advanceTimersByTime(300);
     });

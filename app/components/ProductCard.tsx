@@ -1,11 +1,7 @@
 "use client";
 
 import Image from "next/image";
-
 import { Product } from "@/types";
-// Requisities said "Tailwind", "React Query", "Zustand".
-// It didn't specify an Icon library.
-// I should use SVG directly.
 
 interface ProductCardProps {
   product: Product;
@@ -22,7 +18,6 @@ export default function ProductCard({
   onToggleFavorite,
   priority = false,
 }: ProductCardProps) {
-  // Format price
   const formattedPrice = new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
@@ -31,12 +26,10 @@ export default function ProductCard({
   return (
     <div className='bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col'>
       <div className='relative h-48 bg-gray-100'>
-        {/* EXCLUSIVO Badge */}
         <div className='absolute top-2 left-2 bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded tracking-wider z-10'>
           EXCLUSIVO!
         </div>
 
-        {/* Favorite Button */}
         <button
           onClick={(e) => {
             e.stopPropagation();
@@ -63,7 +56,6 @@ export default function ProductCard({
           </svg>
         </button>
 
-        {/* Image */}
         <div className='relative w-full h-full p-4'>
           <Image
             src={product.imagem}

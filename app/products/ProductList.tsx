@@ -26,18 +26,15 @@ export default function ProductList({
 }: ProductListProps) {
   const { token, user, setAuth } = useAuthStore();
 
-  // Hydrate store if needed
   useEffect(() => {
     if (!token && serverToken) {
       setAuth(serverToken, serverUser);
     }
   }, [serverToken, serverUser, token, setAuth]);
 
-  // Use local state or store state (prefer store but fallback to prop for initial render if store empty)
   const currentUser = user || serverUser;
   const currentToken = token || serverToken;
 
-  // State
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
   const [sortOption, setSortOption] = useState<SortOption>("name-asc");
@@ -45,11 +42,9 @@ export default function ProductList({
   const [favorites, setFavorites] = useState<string[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-  // Pagination State
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
 
-  // Load Favorites from LocalStorage on Mount
   useEffect(() => {
     const stored = localStorage.getItem("favorites");
     if (stored) {
@@ -57,7 +52,6 @@ export default function ProductList({
     }
   }, []);
 
-  // Persist Favorites
   const toggleFavorite = (product: Product) => {
     let newFavorites;
     if (favorites.includes(product.codigo)) {
@@ -73,7 +67,6 @@ export default function ProductList({
     window.location.href = "/";
   };
 
-  // Fetch Logic
   const {
     data: products = initialProducts,
     isLoading,
@@ -91,20 +84,17 @@ export default function ProductList({
       });
     },
     enabled: !!currentToken,
-    initialData: debouncedSearch === "" ? initialProducts : undefined, // Use initial data only for empty search
-    staleTime: 1000 * 60 * 5, // 5 minutes
+    initialData: debouncedSearch === "" ? initialProducts : undefined,
+    staleTime: 1000 * 60 * 5,
   });
 
-  // Derived State (Filtering, Sorting, Pagination)
   const processedProducts = useMemo(() => {
     let filtered = [...products];
 
-    // Filter by Favorites
     if (showFavoritesOnly) {
       filtered = filtered.filter((p) => favorites.includes(p.codigo));
     }
 
-    // Sort
     filtered.sort((a, b) => {
       if (sortOption === "price-asc")
         return parseFloat(a.preco) - parseFloat(b.preco);
@@ -124,17 +114,14 @@ export default function ProductList({
     currentPage * itemsPerPage,
   );
 
-  // Reset page when filters change
   useEffect(() => {
     setCurrentPage(1);
   }, [debouncedSearch, showFavoritesOnly, sortOption]);
 
   return (
     <div className='min-h-screen bg-gray-50 flex flex-col'>
-      {/* Header */}
       <header className='bg-white shadow-sm sticky top-0 z-30'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4'>
-          {/* Logo / Brand */}
           <div className='flex-shrink-0 flex items-center'>
             <span className='text-2xl font-bold text-[#7ABA28]'>
               Innovation
@@ -144,7 +131,6 @@ export default function ProductList({
             </span>
           </div>
 
-          {/* Search Bar */}
           <div className='flex-1 max-w-lg flex gap-2'>
             <div className='relative flex-1'>
               <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
@@ -178,7 +164,6 @@ export default function ProductList({
             </button>
           </div>
 
-          {/* Actions */}
           <div className='flex items-center gap-4'>
             <button
               onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
@@ -258,7 +243,6 @@ export default function ProductList({
         />
       </main>
 
-      {/* Product Detail Modal */}
       <Modal
         isOpen={!!selectedProduct}
         onClose={() => setSelectedProduct(null)}

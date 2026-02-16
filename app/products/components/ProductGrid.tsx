@@ -21,7 +21,6 @@ export default function ProductGrid({
   onToggleFavorite,
   onViewDetails,
 }: ProductGridProps) {
-  // Loading State
   if (isLoading) {
     return (
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
@@ -42,7 +41,6 @@ export default function ProductGrid({
     );
   }
 
-  // Error State
   if (isError) {
     return (
       <div className='text-center py-20'>
@@ -79,7 +77,6 @@ export default function ProductGrid({
     );
   }
 
-  // Empty State
   if (!isLoading && !isError && products.length === 0) {
     return (
       <div className='text-center py-20 bg-white rounded-xl shadow-sm border border-gray-100'>
@@ -107,7 +104,6 @@ export default function ProductGrid({
     );
   }
 
-  // Data State
   return (
     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
       {products.map((product, index) => (

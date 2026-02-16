@@ -26,7 +26,6 @@ describe("ProductCard", () => {
 
     expect(screen.getByText("Test Product")).toBeDefined();
     expect(screen.getByText("Cód: 123")).toBeDefined();
-    // Check price formatting (R$ 10,50)
     expect(screen.getByText(/R\$\s?10,50/)).toBeDefined();
   });
 

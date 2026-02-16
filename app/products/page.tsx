@@ -10,13 +10,11 @@ export default async function ProductsPage() {
     redirect("/");
   }
 
-  // Fetch initial products on the server
   let initialProducts: any[] = [];
   try {
     initialProducts = await fetchProducts({ token: session.token });
   } catch (error) {
     console.error("Failed to fetch initial products:", error);
-    // Session might be invalid, but let's let the client handle re-auth or show empty state
   }
 
   return (

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
+import { getSession } from "@/app/lib/session";
+import AuthProvider from "@/app/components/AuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,12 +14,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-import { getSession } from "@/app/lib/session";
-import AuthProvider from "@/app/components/AuthProvider";
-// Providers is already imported above
-
-// ... imports remain the same
 
 export const metadata: Metadata = {
   title: "Products list",

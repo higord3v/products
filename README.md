@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Products App - Innovation Brindes
 
-## Getting Started
+Este projeto foi desenvolvido como um teste técnico para a Innovation Brindes.
+Trata-se de uma aplicação de catálogo de produtos com autenticação, pesquisa
+inteligente, paginação e gerenciamento de favoritos.
 
-First, run the development server:
+## 🚀 Como rodar a aplicação com Docker
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Certifique-se de ter o **Docker** e o **Docker Compose** instalados em sua
+máquina.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1.  **Clone o repositório:**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+    ```bash
+    git clone https://github.com/higord3v/products.git
+    cd products
+    ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2.  **Configure as variáveis de ambiente:** Crie um arquivo `.env` na raiz do
+    projeto (opcional, já existem valores padrão no Dockerfile para fins de
+    teste):
 
-## Learn More
+    ```env
+    SESSION_SECRET=uma_chave_secreta_muito_longa_e_segura_aqui
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+3.  **Suba o container:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    ```bash
+    docker-compose up -d --build
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4.  **Acesse a aplicação:** Abra o navegador em
+    [http://localhost:3000](http://localhost:3000).
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛠 Decisões Técnicas
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Next.js 16 (App Router):** Escolhido pela performance, suporte nativo a
+  Server Components e facilidade de roteamento.
+- **Tailwind CSS 4:** Utilizado para estilização rápida, responsiva e moderna,
+  garantindo fidelidade ao design solicitado.
+- **React Query (TanStack Query):** Implementado para gerenciamento eficiente de
+  estado assíncrono (cache, loading states, refetching) na listagem de produtos.
+- **Zustand:** Utilizado para gerenciamento de estado global leve (armazenamento
+  do token de sessão no lado do cliente).
+- **Jose:** Biblioteca utilizada para criação e verificação de sessões JWT
+  seguras no lado do servidor (Edge runtime ready).
+- **Vitest & React Testing Library:** Para testes unitários de componentes e
+  hooks.
+- **Playwright:** Para testes de ponta a ponta (E2E), garantindo o fluxo crítico
+  de login e busca.
+
+### O que ficou pendente / Melhorias Futuras
+
+- **Gerenciamento de Erros Granular:** Tratamento mais específico para erros de
+  API além do básico 401.
+- **Fila de Favoritos Persistente no Back-end:** Atualmente, os favoritos são
+  salvos apenas no LocalStorage do usuário.
+- **Skeleton screens mais elaborados:** Melhorar a experiência visual durante o
+  carregamento inicial.
+- **Carrinho de Compras:** A funcionalidade de "Adicionar ao Carrinho" está
+  apenas simulada no modal de detalhes.
+
+---
+
+## 📊 Lighthouse & Demonstração
+
+### Lighthouse Desktop Score
+
+![Lighthouse Score](./assets/other/lighthouse-metrics.png)
+
+### Fluxo da Aplicação
+
+![Fluxo da Aplicação](./assets/other/gif_fluxo.gif)
+
+---
+
+**Desenvolvido por [higord3v](https://github.com/higord3v).**
