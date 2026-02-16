@@ -2,6 +2,8 @@
 
 import { useActionState } from "react";
 import { signIn } from "../actions/auth";
+import Button from "../components/ui/Button";
+import Input from "../components/ui/Input";
 
 export default function SignIn() {
   const [state, action, pending] = useActionState(signIn, undefined);
@@ -52,10 +54,15 @@ export default function SignIn() {
           </div>
 
           <form action={action} className='space-y-6'>
-            <div className='relative'>
-              <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+            <Input
+              id='email'
+              name='email'
+              placeholder='Usuário'
+              className='rounded-full py-3'
+              error={state?.errors?.email?.[0]}
+              icon={
                 <svg
-                  className='h-5 w-5 text-gray-500'
+                  className='h-5 w-5'
                   fill='none'
                   viewBox='0 0 24 24'
                   stroke='currentColor'
@@ -67,19 +74,19 @@ export default function SignIn() {
                     d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'
                   />
                 </svg>
-              </div>
-              <input
-                id='email'
-                name='email'
-                placeholder='Usuário'
-                className='block w-full pl-10 pr-3 py-3 border border-transparent rounded-full leading-5 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-white sm:text-sm shadow-sm'
-              />
-            </div>
+              }
+            />
 
-            <div className='relative'>
-              <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+            <Input
+              id='password'
+              name='password'
+              type='password'
+              placeholder='Senha'
+              className='rounded-full py-3'
+              error={state?.errors?.password?.[0]}
+              icon={
                 <svg
-                  className='h-5 w-5 text-gray-500'
+                  className='h-5 w-5'
                   fill='none'
                   viewBox='0 0 24 24'
                   stroke='currentColor'
@@ -91,15 +98,8 @@ export default function SignIn() {
                     d='M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z'
                   />
                 </svg>
-              </div>
-              <input
-                id='password'
-                name='password'
-                type='password'
-                placeholder='Senha'
-                className='block w-full pl-10 pr-3 py-3 border border-transparent rounded-full leading-5 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-white sm:text-sm shadow-sm'
-              />
-            </div>
+              }
+            />
 
             <div className='flex items-center justify-between text-sm text-white'>
               <div className='flex items-center'>
@@ -121,21 +121,14 @@ export default function SignIn() {
               </div>
             </div>
 
-            {state?.errors && (
-              <div className='text-red-100 bg-red-500/20 p-2 rounded text-sm text-center'>
-                {state.errors.email && <p>{state.errors.email[0]}</p>}
-                {state.errors.password && <p>{state.errors.password[0]}</p>}
-              </div>
-            )}
-
             <div>
-              <button
+              <Button
                 type='submit'
-                disabled={pending}
-                className='w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-[#7ABA28] bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200'
+                isLoading={pending}
+                className='w-full rounded-full py-3 bg-white text-[#7ABA28] hover:bg-gray-50'
               >
-                {pending ? "Entrando..." : "Login"}
-              </button>
+                Login
+              </Button>
             </div>
           </form>
         </div>

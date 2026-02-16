@@ -37,3 +37,5 @@ export type Product = {
   preco: string;
   descricao: string;
 };
+
+export type SortOption = "price-asc" | "price-desc" | "name-asc" | "name-desc";
