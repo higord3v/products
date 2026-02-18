@@ -1,14 +1,25 @@
 import { UserData } from "@/types";
-import { create } from "zustand";
+import { createStore } from "zustand/vanilla";
 
-export interface AuthStore {
+export interface AuthState {
   token: string | null;
   user: UserData | null;
+}
+
+export interface AuthActions {
   setAuth: (token: string, user: UserData) => void;
 }
 
-export const useAuthStore = create<AuthStore>((set) => ({
+export type AuthStore = AuthState & AuthActions;
+
+export const defaultInitState: AuthState = {
   token: null,
   user: null,
-  setAuth: (token: string, user: UserData) => set({ token, user }),
-}));
+};
+
+export const createAuthStore = (initState: AuthState = defaultInitState) => {
+  return createStore<AuthStore>()((set) => ({
+    ...initState,
+    setAuth: (token: string, user: UserData) => set({ token, user }),
+  }));
+};

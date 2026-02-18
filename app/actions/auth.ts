@@ -4,7 +4,7 @@ import { loginRequest } from "@/services/loginRequest";
 import { FormState } from "@/types";
 import { redirect } from "next/navigation";
 import { createSession } from "../lib/session";
-import { useAuthStore } from "@/store/authStore";
+
 export async function signIn(
   state: FormState,
   formData: FormData,

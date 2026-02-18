@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuthStore } from "@/store/authStore";
+import { useAuthStore } from "@/store/auth-store-provider";
 import { useQuery } from "@tanstack/react-query";
 import { fetchProducts } from "@/services/getProducts";
 import { useState, useMemo, useEffect } from "react";
@@ -24,7 +24,9 @@ export default function ProductList({
   user: serverUser,
   token: serverToken,
 }: ProductListProps) {
-  const { token, user, setAuth } = useAuthStore();
+  const token = useAuthStore((state) => state.token);
+  const user = useAuthStore((state) => state.user);
+  const setAuth = useAuthStore((state) => state.setAuth);
 
   useEffect(() => {
     if (!token && serverToken) {
