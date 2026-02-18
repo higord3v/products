@@ -1,8 +1,7 @@
 # Products App - Innovation Brindes
 
 Este projeto foi desenvolvido como um teste técnico para a Innovation Brindes.
-Trata-se de uma aplicação de catálogo de produtos com autenticação, pesquisa
-inteligente, paginação e gerenciamento de favoritos.
+Trata-se de uma aplicação de catálogo de produtos com autenticação, pesquisa, paginação e gerenciamento de favoritos.
 
 ## 🚀 Como rodar a aplicação com Docker
 
@@ -21,7 +20,7 @@ máquina.
     teste):
 
     ```env
-    SESSION_SECRET=uma_chave_secreta_muito_longa_e_segura_aqui
+    SESSION_SECRET=uma_chave_secreta
     ```
 
 3.  **Suba o container:**
@@ -60,8 +59,6 @@ máquina.
   salvos apenas no LocalStorage do usuário.
 - **Skeleton screens mais elaborados:** Melhorar a experiência visual durante o
   carregamento inicial.
-- **Carrinho de Compras:** A funcionalidade de "Adicionar ao Carrinho" está
-  apenas simulada no modal de detalhes.
 
 ---
 
